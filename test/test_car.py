@@ -8,6 +8,9 @@ from engines.willoughby import Willoughby
 from batteries.nubbin import Nubbin
 from batteries.spindler import Splinder
 
+from tires.carrigan import Carrigan
+from tires.octoprime import Octoprime
+
 
 class TestCapulet(unittest.TestCase):
     def test_engine_should_be_serviced(self):
@@ -79,6 +82,32 @@ class TestNubbin(unittest.TestCase):
 
         battery = Nubbin(last_service_date)
         self.assertFalse(battery.battery_should_be_serviced())
+
+class TestCarrigan(unittest.TestCase):
+    def test_tire_should_be_serviced(self):
+        wear_array = [0.5, 1, 0.8, 0.9]
+
+        tire = Carrigan(wear_array)
+        self.assertTrue(tire.tire_should_be_serviced())
+
+    def test_tire_should_not_be_serviced(self):
+        wear_array = [0.5, 0.8, 0.2, 0.4]
+
+        tire = Carrigan(wear_array)
+        self.assertFalse(tire.tire_should_be_serviced())
+
+class TestOctoprime(unittest.TestCase):
+    def test_tire_should_be_serviced(self):
+        wear_array = [0.5, 1, 0.8, 0.9]
+
+        tire = Octoprime(wear_array)
+        self.assertTrue(tire.tire_should_be_serviced())
+
+    def test_tire_should_not_be_serviced(self):
+        wear_array = [0.5, 1, 0.2, 0.4]
+
+        tire = Octoprime(wear_array)
+        self.assertFalse(tire.tire_should_be_serviced())
 
 if __name__ == '__main__':
     unittest.main(verbosity=2)

@@ -1,11 +1,9 @@
 from abc import ABC, abstractmethod
 
 class Battery(ABC):
-  def __init__(self, last_service_mileage, current_mileage, warning_light_on):
-    self.last_service_mileage = last_service_mileage
-    self.current_mileage = current_mileage
-    self.warning_light_on = warning_light_on
+  def __init__(self, last_service_date):
+    self.last_service_date = last_service_date
   
   @abstractmethod
-  def battery_needs_servicing(self):
+  def battery_should_be_serviced(self):
     pass
